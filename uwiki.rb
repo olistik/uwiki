@@ -29,6 +29,8 @@ end
 post '*' do
   page = params[:splat][0]
   page_path = "#{FileUtils.pwd}/pages#{page}.md"
+  dirname = File.dirname page_path
+  FileUtils.mkdir_p dirname unless File.exists? dirname
   content = params[:content]
   File.open(page_path, "w") do |file|
     file.write content
